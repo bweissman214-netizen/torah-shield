@@ -1,0 +1,62 @@
+export type VideoItem = {
+  id: string;
+  driveId: string;
+  title: string;
+  date: string;
+  source: string;
+  summary: string;
+};
+
+export const VIDEOS: VideoItem[] = [
+  {
+    id: "video-1",
+    driveId: "1tBCQ9CUVMnb7QX7lfdb4KCCskguA3ZRB",
+    title: "Nazi-1",
+    date: "Coming soon",
+    source: "TBD",
+    summary: "Placeholder — add title and details",
+  },
+  {
+    id: "video-2",
+    driveId: "1LIo07oRDytaUMB0bKC68gzCp-OaHWSte",
+    title: "Nazi-2",
+    date: "Coming soon",
+    source: "TBD",
+    summary: "Placeholder — add title and details",
+  },
+  {
+    id: "video-3",
+    driveId: "1PJT-mUhH4X2q2texiYVpw8EQySuAvY65",
+    title: "uproar",
+    date: "Coming soon",
+    source: "TBD",
+    summary: "Placeholder — add title and details",
+  },
+  {
+    id: "video-4",
+    driveId: "154djfFJGuIhpM1PEd_AuUXrXZAPuZaWJ",
+    title: "uproar-2",
+    date: "Coming soon",
+    source: "TBD",
+    summary: "Placeholder — add title and details",
+  },
+  {
+    id: "video-5",
+    driveId: "1jX9SwWEyFRj8CiEhQliQmxHdXcYsrLZg",
+    title: "video-7",
+    date: "Coming soon",
+    source: "TBD",
+    summary: "Placeholder — add title and details",
+  },
+  {
+    id: "video-6",
+    driveId: "1YI8rN8V6HReFxdWwnZuJzEu3kcC2CBR4",
+    title: "soliders",
+    date: "Coming soon",
+    source: "TBD",
+    summary: "Placeholder — add title and details",
+  },
+];
+
+export const getVideoEmbedUrl = (driveId: string) =>
+  `https://drive.google.com/file/d/${driveId}/preview`;

@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Crest } from "@/components/site/Crest";
+import { VIDEOS, getVideoEmbedUrl } from "@/data/videos";
 
 export const Route = createFileRoute("/the-record")({
   head: () => ({
@@ -14,65 +15,6 @@ export const Route = createFileRoute("/the-record")({
   }),
   component: TheRecord,
 });
-
-type FeedItem = {
-  kind: "video" | "article";
-  date: string;
-  source: string;
-  title: string;
-  summary: string;
-  url?: string;
-};
-
-const FEED: FeedItem[] = [
-  {
-    kind: "video",
-    date: "Coming soon",
-    source: "Eyewitness footage",
-    title: "Bochurim beaten by police outside a Jerusalem yeshiva",
-    summary:
-      "Raw video documenting the arrest and beating of yeshiva students during a peaceful gathering. Placeholder — upload pending.",
-  },
-  {
-    kind: "article",
-    date: "Coming soon",
-    source: "Yated Ne'eman",
-    title: "Daycare funding pulled — Romema parents speak out",
-    summary:
-      "Parents and rabbanim describe the cuts that left an overwhelmed daycare without enough teachers. Placeholder — link pending.",
-  },
-  {
-    kind: "video",
-    date: "Coming soon",
-    source: "Knesset floor",
-    title: "Coalition minister: 'We will break the chareidi sector.'",
-    summary:
-      "On-the-record statement from a sitting minister. Placeholder — clip pending.",
-  },
-  {
-    kind: "article",
-    date: "Coming soon",
-    source: "Hamodia",
-    title: "Bituach Leumi continues paying terrorists while frum families are cut",
-    summary:
-      "Investigation into who still qualifies for state benefits — and who does not. Placeholder.",
-  },
-  {
-    kind: "video",
-    date: "Coming soon",
-    source: "Rav Moshe Sternbuch shlit\"a",
-    title: "A call to klal Yisrael",
-    summary: "Placeholder for the video featured on the home page.",
-  },
-  {
-    kind: "article",
-    date: "Coming soon",
-    source: "Mishpacha",
-    title: "Inside the 'frum units' — what bochurim come home saying",
-    summary:
-      "Long-form reporting on the spiritual cost of conscription. Placeholder.",
-  },
-];
 
 function TheRecord() {
   return (
@@ -118,30 +60,33 @@ function TheRecord() {
       {/* Feed */}
       <section className="mx-auto max-w-7xl px-6 pb-24 md:px-10">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {FEED.map((item, i) => (
+          {VIDEOS.map((video) => (
             <article
-              key={i}
+              key={video.id}
               className="flex flex-col border border-[var(--color-olive-deep)]/40 bg-[oklch(0.16_0.035_250)] p-6 transition hover:border-[var(--color-olive)]/70"
             >
               <div className="flex items-center justify-between text-[0.62rem] uppercase tracking-[0.28em] text-[var(--color-olive-pale)]">
-                <span>{item.kind === "video" ? "▶ Video" : "✦ Article"}</span>
-                <span className="text-[var(--color-bone)]/50">{item.date}</span>
+                <span>▶ Video</span>
+                <span className="text-[var(--color-bone)]/50">{video.date}</span>
               </div>
 
-              <div className="mt-5 aspect-[16/9] w-full border border-[var(--color-olive-deep)]/40 bg-[oklch(0.12_0.025_250)] flex items-center justify-center">
-                <span className="text-xs uppercase tracking-[0.24em] text-[var(--color-bone)]/40">
-                  {item.kind === "video" ? "Video placeholder" : "Image placeholder"}
-                </span>
+              <div className="mt-5 aspect-[16/9] w-full border border-[var(--color-olive-deep)]/40 bg-[oklch(0.12_0.025_250)] overflow-hidden">
+                <iframe
+                  src={getVideoEmbedUrl(video.driveId)}
+                  className="w-full h-full"
+                  allow="autoplay"
+                  allowFullScreen
+                />
               </div>
 
               <h2 className="mt-5 font-display text-xl leading-snug text-[var(--color-bone)]">
-                {item.title}
+                {video.title}
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-[var(--color-bone)]/70">
-                {item.summary}
+                {video.summary}
               </p>
               <div className="mt-5 text-[0.62rem] uppercase tracking-[0.28em] text-[var(--color-bone)]/55">
-                Source: {item.source}
+                Source: {video.source}
               </div>
             </article>
           ))}
