@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Crest } from "@/components/site/Crest";
-import videosData from "@/data/videos.json";
+import { VIDEOS, getVideoEmbedUrl } from "@/data/videos";
 
 export const Route = createFileRoute("/the-record")({
   head: () => ({
@@ -15,20 +15,6 @@ export const Route = createFileRoute("/the-record")({
   }),
   component: TheRecord,
 });
-
-type Video = {
-  id: string;
-  driveId: string;
-  title: string;
-  date: string;
-  source: string;
-  summary: string;
-};
-
-const VIDEOS: Video[] = videosData.videos;
-
-const getVideoEmbedUrl = (driveId: string) =>
-  `https://drive.google.com/file/d/${driveId}/preview`;
 
 function TheRecord() {
   return (

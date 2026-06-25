@@ -1,4 +1,4 @@
-export type VideoItem = {
+export type Video = {
   id: string;
   driveId: string;
   title: string;
@@ -7,14 +7,14 @@ export type VideoItem = {
   summary: string;
 };
 
-export const VIDEOS: VideoItem[] = [
+export const VIDEOS: Video[] = [
   {
     id: "video-1",
     driveId: "1tBCQ9CUVMnb7QX7lfdb4KCCskguA3ZRB",
     title: "Nazi-1",
     date: "Coming soon",
     source: "TBD",
-    summary: "Placeholder — add title and details",
+    summary: "Add title and details",
   },
   {
     id: "video-2",
@@ -22,7 +22,7 @@ export const VIDEOS: VideoItem[] = [
     title: "Nazi-2",
     date: "Coming soon",
     source: "TBD",
-    summary: "Placeholder — add title and details",
+    summary: "Add title and details",
   },
   {
     id: "video-3",
@@ -30,7 +30,7 @@ export const VIDEOS: VideoItem[] = [
     title: "uproar",
     date: "Coming soon",
     source: "TBD",
-    summary: "Placeholder — add title and details",
+    summary: "Add title and details",
   },
   {
     id: "video-4",
@@ -38,7 +38,7 @@ export const VIDEOS: VideoItem[] = [
     title: "uproar-2",
     date: "Coming soon",
     source: "TBD",
-    summary: "Placeholder — add title and details",
+    summary: "Add title and details",
   },
   {
     id: "video-5",
@@ -46,7 +46,7 @@ export const VIDEOS: VideoItem[] = [
     title: "video-7",
     date: "Coming soon",
     source: "TBD",
-    summary: "Placeholder — add title and details",
+    summary: "Add title and details",
   },
   {
     id: "video-6",
@@ -54,7 +54,7 @@ export const VIDEOS: VideoItem[] = [
     title: "soliders",
     date: "Coming soon",
     source: "TBD",
-    summary: "Placeholder — add title and details",
+    summary: "Add title and details",
   },
 ];
 
