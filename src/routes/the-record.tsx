@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Crest } from "@/components/site/Crest";
-import { VIDEOS, getVideoEmbedUrl } from "@/data/videos";
+import videosData from "@/data/videos.json";
 
 export const Route = createFileRoute("/the-record")({
   head: () => ({
@@ -15,6 +15,20 @@ export const Route = createFileRoute("/the-record")({
   }),
   component: TheRecord,
 });
+
+type Video = {
+  id: string;
+  driveId: string;
+  title: string;
+  date: string;
+  source: string;
+  summary: string;
+};
+
+const VIDEOS: Video[] = videosData.videos;
+
+const getVideoEmbedUrl = (driveId: string) =>
+  `https://drive.google.com/file/d/${driveId}/preview`;
 
 function TheRecord() {
   return (
@@ -59,40 +73,8 @@ function TheRecord() {
 
       {/* Feed */}
       <section className="mx-auto max-w-7xl px-6 pb-24 md:px-10">
-        {/* First video — full width */}
-        <div className="mb-8">
-          {VIDEOS.length > 0 && (
-            <article className="flex flex-col border border-[var(--color-olive-deep)]/40 bg-[oklch(0.16_0.035_250)] p-6 transition hover:border-[var(--color-olive)]/70">
-              <div className="flex items-center justify-between text-[0.62rem] uppercase tracking-[0.28em] text-[var(--color-olive-pale)]">
-                <span>▶ Video</span>
-                <span className="text-[var(--color-bone)]/50">{VIDEOS[0].date}</span>
-              </div>
-
-              <div className="mt-5 aspect-[16/9] w-full border border-[var(--color-olive-deep)]/40 bg-[oklch(0.12_0.025_250)] overflow-hidden">
-                <iframe
-                  src={getVideoEmbedUrl(VIDEOS[0].driveId)}
-                  className="w-full h-full"
-                  allow="autoplay"
-                  allowFullScreen
-                />
-              </div>
-
-              <h2 className="mt-5 font-display text-xl leading-snug text-[var(--color-bone)]">
-                {VIDEOS[0].title}
-              </h2>
-              <p className="mt-3 text-sm leading-relaxed text-[var(--color-bone)]/70">
-                {VIDEOS[0].summary}
-              </p>
-              <div className="mt-5 text-[0.62rem] uppercase tracking-[0.28em] text-[var(--color-bone)]/55">
-                Source: {VIDEOS[0].source}
-              </div>
-            </article>
-          )}
-        </div>
-
-        {/* Remaining videos — 2 columns */}
-        <div className="grid gap-6 md:grid-cols-2">
-          {VIDEOS.slice(1).map((video) => (
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {VIDEOS.map((video) => (
             <article
               key={video.id}
               className="flex flex-col border border-[var(--color-olive-deep)]/40 bg-[oklch(0.16_0.035_250)] p-6 transition hover:border-[var(--color-olive)]/70"
